@@ -1,0 +1,154 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    background-color: #1C1C1C;
+    font-family: 'Karla', sans-serif;
+    height: 100%;
+    font-size: 20px;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    width: 1000px;
+    height: 700px;
+    color: white;
+}
+
+main .shodan-infopoint-cover {
+    display: flex;
+    width: 250px;
+    background-image: url('../static/shodan.jpg');
+    background-position: right center;
+    background-repeat: no-repeat;
+    box-shadow: 0px 0px 25px black;
+    background-size: cover;
+}
+
+main section {
+    display: flex;
+    width: 80%;
+    align-items: center;
+}
+
+main section div {
+    padding: 35px;
+    padding-top: 0;
+}
+
+main section .shodan-infopoint-buttons {
+    display: flex;
+    margin-top: 30px;
+    padding: 0;
+}
+
+main section .shodan-infopoint-buttons a {
+    text-decoration: none;
+}
+
+main section .shodan-infopoint-buttons a .shodan-infopoint-button {
+	margin-right: 10px;
+	padding: 9px;
+	color: white;
+	font-weight: 600;
+	transition: 0.3s;
+	box-shadow: none;
+    line-height: 22.5px;
+	outline: 0;
+    min-width: 150px;
+	border: 0;
+	font-size: 16px;
+	border-radius: 2px;
+    text-align: center;
+	background: #b72cae;
+}
+
+.shodan-infopoint-logo {
+    background-image: url('../static/logo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    padding: 50px;
+}
+
+p {
+    line-height: 27.5px;
+}
+
+.shodan-infopoint-tip {
+    font-size: 12.5px;
+    color: grey;
+}
+
+span {
+    color: #ff8df7;
+    font-weight: 500;
+}
+
+main section .shodan-infopoint-buttons a .shodan-infopoint-button:hover {
+    background: #85207e;  
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2.3px;
+}
+
+a:hover {
+    color: #b72cae;
+}
+
+@media screen and (max-width: 1000px) {
+    main {
+        width: 100% !important;
+    }
+
+    .shodan-infopoint-cover {
+        display: none !important;
+    }
+
+    .shodan-infopoint-logo {
+        height: auto !important;
+        padding-left: 0 !important;
+        margin-top: 5px;
+        padding-right: 0 !important;
+        width: auto;
+    }
+
+    main section {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    main section div {
+        width: 100% !important;
+        height: 100% !important;
+        text-align: justify;
+    }
+
+    .shodan-infopoint-buttons {
+        flex-flow: column;
+        height: auto !important;
+    }
+
+    .shodan-infopoint-button {
+        display: block !important;
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+        padding-right: 0 !important;
+        width: 100% !important;
+        height: 50px !important;
+    }
+    
+    .shodan-infopoint-tip {
+        padding-bottom: 20px;
+        text-align: center;
+    }
+}
