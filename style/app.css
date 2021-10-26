@@ -133,6 +133,10 @@ a:hover {
         text-align: justify;
     }
 
+    main section .shodan-infopoint-buttons a {
+        display: inherit !important;
+    }    
+
     .shodan-infopoint-buttons {
         flex-flow: column;
         height: auto !important;
