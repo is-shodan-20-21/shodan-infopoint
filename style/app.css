@@ -10,7 +10,6 @@ html, body {
 
 body {
     display: flex;
-    margin-top: 25px;
     justify-content: center;
 }
 
@@ -290,12 +289,17 @@ video{
 
 .shodan-logo-preview {
     transition: 0.3s;
+    margin-top: 20px;
     cursor: pointer;
     width: 100%;
 }
 
 
-@media screen and (max-width: 1550px) {
+@media screen and (max-width: 1700px) {
+    .shodan-infopoint-logo {
+        margin-top: 45px;
+    }
+
     main {
         min-width: 100%;
     }
