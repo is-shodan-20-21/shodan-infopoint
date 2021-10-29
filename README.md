@@ -1,4 +1,4 @@
-# Shodan Infopoint
+# Landing Page — [/shodan-infopoint/](https://is-shodan-21-22.github.io/shodan-infopoint/)
 
 Questa repository contiene il codice sorgente della landing page pubblica del progetto.
 
