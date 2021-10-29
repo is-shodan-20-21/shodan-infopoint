@@ -295,7 +295,13 @@ video{
 }
 
 
-@media screen and (max-width: 1700px) {
+@media screen and (max-width: 1750px) {
+    .shodan-logo-preview {
+        width: auto !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
     .shodan-infopoint-logo {
         margin-top: 45px;
     }
