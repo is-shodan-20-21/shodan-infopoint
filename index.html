@@ -6,13 +6,61 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="static/icon.png" type="image/x-icon" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<title>Shodan Infopoint</title>
 		<meta name="description" content="[SHODAN-21/22-DE LUCIA] Infopoint di Shodan, progetto di TSW e IS del Corso di Laurea Triennale in Informatica all'Università di Salerno.">
 		<link rel="stylesheet" href="style/app.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-	</head>
+	
+        <script>
+            $(function() {
+                $(".preview-button").on("click", (x) => {
+                    $("section").fadeOut();
+                    $(".shodan-infopoint-cover").fadeOut(400, () => 
+                        $("#preview").fadeIn()
+                    );
+                });
+
+                $(".shodan-logo-preview").on("click", (u) => {
+                    $("#preview").fadeOut(400, () => {
+                        $("section").fadeIn();
+                        $(".shodan-infopoint-cover").fadeIn();
+                    });
+                });
+
+                $(".feature-picture").on("click", (e) => {
+                    $('video').each(function() {
+                        $(this).get(0).pause();
+                    });
+
+                    $(".feature-text").addClass("shadowy");
+                    $("main").css("filter", "blur(1.5rem)");
+                    $("body").append("<div class='feature-zoom'><video class='feature-picture feature-zoom-video shadowy' autoplay loop muted><source type='video/mp4' /></video></div>");
+
+                    let preview = $(e.target).children().attr("src");
+
+                    $(".feature-zoom video source").attr("src", preview);
+
+                    $("body").bind("click", (y) => {
+                        if(y.target !== y.currentTarget)
+                            return;
+
+                        $('video').each(function() {
+                            $(this).get(0).play();
+                        });
+
+                        $("main").css("filter", "none");
+                        $(".feature-text").removeClass("shadowy");
+                        $(".feature-zoom").remove();
+
+                        $("body").unbind("click");
+                    });
+                });
+            });
+        </script>
+    </head>
     <body>
         <main>
             <div class="shodan-infopoint-cover"></div>
@@ -35,6 +83,10 @@
                         Il codice è opportunamente commentato; la documentazione contiene, oltre ai preparati finali, anche i vettoriali e i prodotti intermerdi. 
                         La struttura implementativa adotta la <i>filosofia a componenti</i> di <a href="https://it.reactjs.org/">React</a> e <a href="https://angular.io/">Angular</a>.
                     </p>
+                    <div class="preview-button shodan-infopoint-button">
+                        <i class="fas fa-project-diagram"></i>
+                        Anteprima
+                    </div>
                     <div class="shodan-infopoint-buttons">
                         <a href="https://github.com/is-shodan-21-22/shodan-maven">
                             <div class="shodan-infopoint-button">
@@ -58,7 +110,7 @@
                         </a>
 
                         <a href="https://github.com/is-shodan-21-22">
-                            <div class="shodan-infopoint-button">
+                            <div class="last shodan-infopoint-button">
                                 Repository<br />
                                 <span><i class="fab fa-github"></i> Shodan</span>
                             </div>
@@ -69,6 +121,90 @@
                     </p>
                 </div>
             </section>
+
+            <div id="preview">
+                <div class="shodan-infopoint-logo shodan-logo-preview"></div>
+                <div class="feature">
+                    <div class="right feature-text">
+                        <div class="feature-inner-text">
+                            <strong>Shodan è una piattaforma web dedicata al retrogaming</strong> e come tale la sua estetica è ispirata al vaporwave e alle modalità arcade di un tempo.
+                            Tuttavia, le funzionalità rispecchiano i requisiti dei moderni e-commerce. <br /><br /><span class="less">L'estetica è in parte ispirata a <a target=”_blank” href="https://www.gog.com/">GOG</a> di CD Projekt.</span>
+                        </div>
+                    </div>
+                    <video class="feature-picture shadowy" autoplay loop muted>
+                        <source src="static/preview/index.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+                <div class="feature">
+                    <video class="feature-picture shadowy" autoplay loop muted>
+                        <source src="static/preview/loading.mp4" type="video/mp4" />
+                    </video>
+                    <div class="left feature-text">
+                        <div class="feature-inner-text">
+                            Shodan è un applicativo interamente <strong>one-page</strong>. Nessuna ricarica, nessun caricamento eccetto all'accesso, niente URL chilometrici.<br /><br />
+                            AJAX e jQuery sono stati ampiamente abusati per fornire tutte le funzionalità del sito in maniera rapida e sicura. 
+                            La piattaforma è organizzata in <em>container</em> che caricano, 
+                            a seconda delle richieste dell'utente, differenti <em>components</em>, 
+                            analogamente a come avviene in framework come <a target=”_blank” href="https://reactjs.org/">React</a>, <a target=”_blank” href="https://angular.io/">Angular</a> e <a target=”_blank” href="https://vuejs.org/">Vue</a>.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="right feature-text">
+                        <div class="feature-inner-text">
+                            Funzioni come la <strong>ricerca asincrona</strong> dei giochi nel negozio e nella libreria rendono l'esperienza utente piacevole ed efficace,
+                            sfrutando al massimo l'<strong>architettura a componenti</strong> riutilizzabili impiegata da Shodan. 
+                            <br /><br />Un componente chiave è, ad esempio, <a target=”_blank” class="to-repo" href="">GameList</a>, ossia 
+                            una lista di giochi visualizzati come <em>card</em> che, in base alle necessità, viene caricato con giochi differenti.
+                        </div>
+                    </div>
+                    <video class="feature-picture shadowy" autoplay loop muted>
+                        <source src="static/preview/search.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+                <div class="feature">
+                    <video class="feature-picture shadowy" autoplay loop muted>
+                        <source src="static/preview/cards.mp4" type="video/mp4" />
+                    </video>
+                    <div class="left feature-text">
+                        <div class="feature-inner-text">
+                            E' stato implementato un sistema di pagamento fittizzio potenzialmente agganciabile a sistemi come <a target=”_blank” href="https://www.shopify.com/">Shopify</a>.
+                            L'utente può registrare un numero di carte di pagamento, utilizzabili successivamente per la ricarica del saldo. Circuiti popolari come VISA e Mastercard prevedono implementazioni ad hoc.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="right feature-text">
+                        <div class="feature-inner-text">
+                            Il punto di forza di Shodan è la navigabilità. La totale asincronicità permette una navigazione estremamente fluida e senza interruzioni da redirect o ricariche. 
+                            Inoltre, aggiungere nuove pagine è semplice e intuitivo grazie alla maniera in cui è implementata l'architettura Model-View-Controller.<br /><br />
+                            Per creare una pagina su Shodan è sufficiente creare un template in <a target=”_blank” class="to-repo" href="">View</a> e agganciarlo alla <a target=”_blank” class="to-repo" href="">Nav</a>
+                            Questa particolarità lo rende mantenibile, e soprattutto scalabile.
+                        </div>
+                    </div>
+                    <video class="right feature-picture shadowy" autoplay loop muted>
+                        <source src="static/preview/game.mp4" type="video/mp4" />
+                    </video>
+                </div>
+
+                <div class="feature">
+                    <video class="feature-picture shadowy" autoplay loop muted>
+                        <source src="static/preview/docs.mp4" type="video/mp4" />
+                    </video>
+                    <div class="feature-text">
+                        <div class="left feature-inner-text">
+                            Un'ampia documentazione, redatta principalmente per l'esame di Ingegneria del Software, è disponibile sulla repository <a target=”_blank” href="">/deliverables/</a> in formato PDF.<br />
+                            In alternativa, la repository <a target=”_blank” href="">/docs/</a> offre tutti i preparati intermedi, i vettoriali .drawio di immagini e layout, documenti modificabili DOCX e uno storico delle revisioni.<br />
+                            <br /><span class="less">I documenti non sono da considerarsi necessariamente validi, corretti o impiegabili per il sostenimento dell'esame. 
+                            Se ne offre a chiunque la libera consultazione puramente per motivi didattici.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </body>
 </html>
